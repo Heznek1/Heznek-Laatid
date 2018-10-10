@@ -16,6 +16,7 @@ namespace HeznekLaatid
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            //TODO: noam: fsdkfjsdflsdflk
             if (TextBox1.Text != string.Empty)
             {
                 Button1.Text = "elinor";
