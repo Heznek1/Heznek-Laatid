@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using HeznekLaatid.model;
 
 namespace HeznekLaatid
 {
@@ -16,13 +17,25 @@ namespace HeznekLaatid
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-         
-            if (TextBox1.Text != string.Empty)
+            /*
+               if (TextBox1.Text != string.Empty)
+               {
+                   Button1.Text = "elinor";
+               }
+             //  ConnectionToDB db = new ConnectionToDB();
+             */
+
+            var context = new HeznekDBE();
+            var studyField = new studyFieldTbl()
             {
-                Button1.Text = "elinor";
-            }
-            ConnectionToDB db = new ConnectionToDB();
-         
+
+                field = "מדעי הרוח",
+                nameOfDegree = "Computer Science"
+            };
+            context.studyFieldTbl.Add(studyField);
+            context.SaveChanges();
+
+
         }
 
         protected void Button1_Authenticate(object sender, AuthenticateEventArgs e)
