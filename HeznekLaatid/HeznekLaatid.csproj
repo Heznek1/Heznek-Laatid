@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ConnectionToDB.cs" />
+    <Compile Include="control\Class1.cs" />
     <Compile Include="model\bank.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
