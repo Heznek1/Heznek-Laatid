@@ -9,7 +9,26 @@ namespace HeznekLaatid
 {
     class userLogic
     {
-                             /* gets functions*/
+        // singeltone class
+        private static userLogic instance;
+
+        private userLogic() { }
+
+        public static userLogic Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new userLogic();
+                }
+                return instance;
+            }
+        }
+
+
+
+        /* gets functions*/
 
         public List<userTbl> getAllUsers()
             //give all the users in the table with no filter
@@ -47,6 +66,28 @@ namespace HeznekLaatid
         }
 
                                 /*updates functions*/
+
+        public userTbl getSpecificUser(char id)
+        {
+            //gets a specific usert from the list of users
+            using (var db = new HeznekDBE())
+            {
+                List<userTbl> users = db.userTbl.ToList();
+                
+                foreach(var user in users)
+                {
+                    if(user.id.Equals(id))
+                    {
+                        return user;
+                    }
+                }
+                return null;
+
+            }
+
+        }
+
+
                                
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using HeznekLaatid.model;
+ 
 
 namespace HeznekLaatid
 {
@@ -11,15 +12,18 @@ namespace HeznekLaatid
     {
         static void Main(String[] args)
         {
-                var context = new HeznekDBE();
+                var db = new HeznekDBE();
+            /*
             var studyField = new studyFieldTbl()
             {
                
                 field = "computers",
                 nameOfDegree = "Computer Science"      
         };
-            context.studyFieldTbl.Add(studyField);
-            context.SaveChanges();
+            db.studyFieldTbl.Add(studyField);
+            db.SaveChanges();*/
+            //userLogic userlogic = new userLogic();
+           // userlogic.getAllUsers();
 
         }
      }

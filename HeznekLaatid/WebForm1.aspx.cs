@@ -25,15 +25,29 @@ namespace HeznekLaatid
              //  ConnectionToDB db = new ConnectionToDB();
              */
 
-            var context = new HeznekDBE();
-            var studyField = new studyFieldTbl()
-            {
+            /* var studyField = new studyFieldTbl()
+             {
 
-                field = "מדעי הרוח",
-                nameOfDegree = "Computer Science"
-            };
-            context.studyFieldTbl.Add(studyField);
-            context.SaveChanges();
+                 field = "מדעי הרוח",
+                 nameOfDegree = "Computer Science"
+             };
+             db.studyFieldTbl.Add(studyField);
+             db.SaveChanges();*/
+
+            var db = new HeznekDBE();
+
+            var users = userLogic.Instance.getAllUsers().ToList();
+            // Console.WriteLine("the users are" + users);
+            if(users.Count > 1)
+            {
+                Label1.Text = "there are users in the table";
+            }
+            else
+            {
+                Label1.Text = "there are just one user in the table";
+            }
+            
+
 
 
         }
@@ -50,6 +64,7 @@ namespace HeznekLaatid
 
         protected void TextBox2_TextChanged(object sender, EventArgs e)
         {
+        
 
         }
 
