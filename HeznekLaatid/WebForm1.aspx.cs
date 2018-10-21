@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using HeznekLaatid.model;
+using HeznekLaatid.utils;
 
 namespace HeznekLaatid
 {
@@ -35,7 +36,10 @@ namespace HeznekLaatid
              db.SaveChanges();*/
 
             var db = new HeznekDBE();
+            int num = foreignKeys.Instance.getCityNumberByName("בית שאן");
+            Label1.Text = Convert.ToString(num);
 
+            /*
             var users = userLogic.Instance.getAllUsers().ToList();
             // Console.WriteLine("the users are" + users);
             if(users.Count > 1)
@@ -44,12 +48,12 @@ namespace HeznekLaatid
             }
             else
             {
-                Label1.Text = "there are just one user in the table";
-            }
-            
-
-
-
+                //Label1.Text = "there are just one user in the table";
+                if(userLogic.Instance.getAllUsersFromSpecificCity("אופקים").Count != 0)
+                {
+                    Label1.Text = "True";
+                }
+            }*/
         }
 
         protected void Button1_Authenticate(object sender, AuthenticateEventArgs e)

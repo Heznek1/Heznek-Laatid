@@ -37,6 +37,7 @@ namespace HeznekLaatid
             {
                 List<userTbl> users = db.userTbl.ToList();
                 return users;
+                
 
             }
 
@@ -65,7 +66,20 @@ namespace HeznekLaatid
             }
         }
 
-                                /*updates functions*/
+        public List<userTbl> getAllUsersFromSpecificCity(String city)
+        {
+            //give all the users in the table that are from a specific city
+            using (var db = new HeznekDBE())
+            {
+                var query = (from userTbl in db.userTbl
+                             where (userTbl.cityNumber.Value.Equals(city))
+                             select userTbl);
+                var users = query.ToList();
+                return users;
+            }
+
+        }
+        /*updates functions*/
 
         public userTbl getSpecificUser(char id)
         {
@@ -85,9 +99,6 @@ namespace HeznekLaatid
 
             }
 
-        }
-
-
-                               
+        }                       
     }
 }
