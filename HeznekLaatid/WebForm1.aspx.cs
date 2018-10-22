@@ -35,25 +35,13 @@ namespace HeznekLaatid
              db.studyFieldTbl.Add(studyField);
              db.SaveChanges();*/
 
-            var db = new HeznekDBE();
-            int num = foreignKeys.Instance.getCityNumberByName("בית שאן");
-            Label1.Text = Convert.ToString(num);
+            //var db = new HeznekDBE();
 
-            /*
-            var users = userLogic.Instance.getAllUsers().ToList();
-            // Console.WriteLine("the users are" + users);
-            if(users.Count > 1)
-            {
-                Label1.Text = "there are users in the table";
-            }
-            else
-            {
-                //Label1.Text = "there are just one user in the table";
-                if(userLogic.Instance.getAllUsersFromSpecificCity("אופקים").Count != 0)
-                {
-                    Label1.Text = "True";
-                }
-            }*/
+            var users = userLogic.Instance.getAllUsersFromSpecificCity("אופקים").ToArray();
+            int[] numbers = { 0, 1, 2 };
+            int num = numbers[0];
+            var a = users[0];
+            Label1.Text = users[0].firstName + " " +  users[0].lastName;
         }
 
         protected void Button1_Authenticate(object sender, AuthenticateEventArgs e)

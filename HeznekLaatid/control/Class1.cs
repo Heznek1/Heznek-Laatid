@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using HeznekLaatid.model;
+using HeznekLaatid.utils;
+using System.Collections;
 
 namespace HeznekLaatid
 {
@@ -71,19 +73,21 @@ namespace HeznekLaatid
             //give all the users in the table that are from a specific city
             using (var db = new HeznekDBE())
             {
+                //get the serial number of the specific city
+                int sn = foreignKeys.Instance.getCityNumberByName(city);
+
                 var query = (from userTbl in db.userTbl
-                             where (userTbl.cityNumber.Value.Equals(city))
+                             where (userTbl.cityNumber.Value == sn)
                              select userTbl);
                 var users = query.ToList();
                 return users;
             }
 
         }
-        /*updates functions*/
-
-        public userTbl getSpecificUser(char id)
+       
+        public userTbl getSpecificUserById(char id)
         {
-            //gets a specific usert from the list of users
+            //gets a specific user by Id(table key) from the list of users
             using (var db = new HeznekDBE())
             {
                 List<userTbl> users = db.userTbl.ToList();
@@ -99,6 +103,55 @@ namespace HeznekLaatid
 
             }
 
-        }                       
+        } 
+        
+        public ArrayList getSpecificUserByFn(String fn)
+        {
+            //filter users table by first name- get all the users with the same first name
+            using (var db = new HeznekDBE())
+            {
+                List<userTbl> users = db.userTbl.ToList();
+                ArrayList usersAL = new ArrayList();
+
+                foreach (var user in users)
+                {
+                    if (user.firstName.Equals(fn))
+                    {
+                        usersAL.Add(user);
+                    }
+                }
+                return usersAL;
+            }
+        }
+
+        public ArrayList getSpecificUserByLn(String ln)
+        {
+            //filter users table by last name- get all the users with the same last name
+            using (var db = new HeznekDBE())
+            {
+                List<userTbl> users = db.userTbl.ToList();
+                ArrayList usersAL = new ArrayList();
+
+                foreach (var user in users)
+                {
+                    if (user.firstName.Equals(ln))
+                    {
+                        usersAL.Add(user);
+                    }
+                }
+                return usersAL;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /*updates functions*/
+
     }
 }
