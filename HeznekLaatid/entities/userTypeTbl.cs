@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class scholarship
+    public partial class userTypeTbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public scholarship()
+        public userTypeTbl()
         {
-            this.studentScholarship = new HashSet<studentScholarship>();
+            this.loginAndPermissions = new HashSet<loginAndPermissions>();
         }
     
-        public int sn { get; set; }
-        public string scholarshipName { get; set; }
-        public Nullable<int> budgetScholarship { get; set; }
-        public string admission { get; set; }
-        public string status { get; set; }
+        public int numOfType { get; set; }
+        public string userType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<studentScholarship> studentScholarship { get; set; }
+        public virtual ICollection<loginAndPermissions> loginAndPermissions { get; set; }
     }
 }

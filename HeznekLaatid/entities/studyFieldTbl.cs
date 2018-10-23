@@ -7,21 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class bank
+    public partial class studyFieldTbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public bank()
+        public studyFieldTbl()
         {
             this.userTbl = new HashSet<userTbl>();
         }
     
         public int sn { get; set; }
-        public string name { get; set; }
+        public string field { get; set; }
+        public string nameOfDegree { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userTbl> userTbl { get; set; }

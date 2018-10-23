@@ -7,22 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class messages
+    public partial class bank
     {
-        public int sn { get; set; }
-        public string idSender { get; set; }
-        public string idReciever { get; set; }
-        public string subject { get; set; }
-        public string content { get; set; }
-        public Nullable<System.TimeSpan> hour { get; set; }
-        public Nullable<System.DateTime> dateOfMessage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public bank()
+        {
+            this.userTbl = new HashSet<userTbl>();
+        }
     
-        public virtual userTbl userTbl { get; set; }
-        public virtual userTbl userTbl1 { get; set; }
+        public int sn { get; set; }
+        public string name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userTbl> userTbl { get; set; }
     }
 }

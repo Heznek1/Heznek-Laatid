@@ -7,22 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class serviceTbl
+    public partial class eventTbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public serviceTbl()
+        public eventTbl()
         {
             this.userTbl = new HashSet<userTbl>();
         }
     
         public int sn { get; set; }
-        public string typeOfService { get; set; }
-        public string longOfService { get; set; }
+        public string nameEvent { get; set; }
+        public string subjectEvent { get; set; }
+        public Nullable<System.DateTime> eventDate { get; set; }
+        public Nullable<System.TimeSpan> eventHour { get; set; }
+        public string eventLocation { get; set; }
+        public string typeOfParticipants { get; set; }
+        public Nullable<int> numParticipantsExpected { get; set; }
+        public Nullable<int> numOfActualParticipants { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userTbl> userTbl { get; set; }

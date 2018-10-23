@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using HeznekLaatid.model;
-using HeznekLaatid.utils;
+using HeznekLaatid;
 
-namespace HeznekLaatid
-{
-    public partial class WebForm1 : System.Web.UI.Page
+
+    public partial class LoginForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //UserData.getAllUsers();
             
         }
 
@@ -37,7 +36,8 @@ namespace HeznekLaatid
 
             //var db = new HeznekDBE();
 
-            var users = userLogic.Instance.getAllUsersFromSpecificCity("אופקים").ToArray();
+            var users = UserData.getAllUsers().ToArray();
+            //var users = userLogic.Instance.getAllUsersFromSpecificCity("אופקים").ToArray();
             int[] numbers = { 0, 1, 2 };
             int num = numbers[0];
             var a = users[0];
@@ -65,4 +65,3 @@ namespace HeznekLaatid
 
         }
     }
-}

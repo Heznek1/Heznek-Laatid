@@ -7,18 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class loginAndPermissions
+    public partial class messages
     {
-        public string id { get; set; }
-        public string password { get; set; }
-        public int userType { get; set; }
+        public int sn { get; set; }
+        public string idSender { get; set; }
+        public string idReciever { get; set; }
+        public string subject { get; set; }
+        public string content { get; set; }
+        public Nullable<System.TimeSpan> hour { get; set; }
+        public Nullable<System.DateTime> dateOfMessage { get; set; }
     
-        public virtual userTypeTbl userTypeTbl { get; set; }
         public virtual userTbl userTbl { get; set; }
+        public virtual userTbl userTbl1 { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="HeznekLaatid.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="loginForm.aspx.cs" Inherits="LoginForm" %>
 
 <!DOCTYPE html>
 
@@ -19,8 +19,8 @@
         </p>
         <p>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT * FROM [bank]"></asp:SqlDataSource>
         </p>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT * FROM [bank]"></asp:SqlDataSource>
     </form>
 </body>
 </html>

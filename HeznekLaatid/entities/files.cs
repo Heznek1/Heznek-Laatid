@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class contactStudentCandidate
+    public partial class files
     {
-        public string idStudent { get; set; }
-        public string idCandidate { get; set; }
-        public Nullable<System.DateTime> dateOfCall { get; set; }
-        public string updating { get; set; }
+        public string nameOfFile { get; set; }
+        public string idOfTheUploader { get; set; }
+        public string fileLocation { get; set; }
     
         public virtual userTbl userTbl { get; set; }
-        public virtual userTbl userTbl1 { get; set; }
     }
 }

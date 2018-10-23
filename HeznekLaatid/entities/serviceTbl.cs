@@ -7,22 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class statusTbl
+    public partial class serviceTbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public statusTbl()
+        public serviceTbl()
         {
             this.userTbl = new HashSet<userTbl>();
         }
     
-        public int numOfStatus { get; set; }
-        public string primaryStatusName { get; set; }
-        public string secondaryStatusName { get; set; }
+        public int sn { get; set; }
+        public string typeOfService { get; set; }
+        public string longOfService { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userTbl> userTbl { get; set; }

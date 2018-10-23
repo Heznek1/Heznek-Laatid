@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class files
+    public partial class loginAndPermissions
     {
-        public string nameOfFile { get; set; }
-        public string idOfTheUploader { get; set; }
-        public string fileLocation { get; set; }
+        public string id { get; set; }
+        public string password { get; set; }
+        public int userType { get; set; }
     
+        public virtual userTypeTbl userTypeTbl { get; set; }
         public virtual userTbl userTbl { get; set; }
     }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
-using HeznekLaatid.model;
- 
+using HeznekLaatid.entities;
+
 
 namespace HeznekLaatid
 {

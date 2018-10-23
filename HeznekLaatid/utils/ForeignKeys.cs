@@ -3,33 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
-using HeznekLaatid.model;
+using HeznekLaatid.entities;
 
 
-namespace HeznekLaatid.utils
+namespace HeznekLaatid
 {
-    class foreignKeys
+    class ForeignKeys
     {
 
-        // singeltone class
-        private static foreignKeys instance;
-
-        private foreignKeys() { }
-
-        public static foreignKeys Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new foreignKeys();
-                }
-                return instance;
-            }
-        }
-
-
-        public int getCityNumberByName(String city)
+        public static int getCityNumberByName(String city)
         {
           
             using (var db = new HeznekDBE())
@@ -50,14 +32,6 @@ namespace HeznekLaatid.utils
                 return cityNum;
               
             }
-
-
-             
-
-
-                
         }
-
-
     }
 }

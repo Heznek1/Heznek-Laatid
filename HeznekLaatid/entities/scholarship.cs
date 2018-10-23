@@ -7,30 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HeznekLaatid.model
+namespace HeznekLaatid.entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class eventTbl
+    public partial class scholarship
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public eventTbl()
+        public scholarship()
         {
-            this.userTbl = new HashSet<userTbl>();
+            this.studentScholarship = new HashSet<studentScholarship>();
         }
     
         public int sn { get; set; }
-        public string nameEvent { get; set; }
-        public string subjectEvent { get; set; }
-        public Nullable<System.DateTime> eventDate { get; set; }
-        public Nullable<System.TimeSpan> eventHour { get; set; }
-        public string eventLocation { get; set; }
-        public string typeOfParticipants { get; set; }
-        public Nullable<int> numParticipantsExpected { get; set; }
-        public Nullable<int> numOfActualParticipants { get; set; }
+        public string scholarshipName { get; set; }
+        public Nullable<int> budgetScholarship { get; set; }
+        public string admission { get; set; }
+        public string status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userTbl> userTbl { get; set; }
+        public virtual ICollection<studentScholarship> studentScholarship { get; set; }
     }
 }
