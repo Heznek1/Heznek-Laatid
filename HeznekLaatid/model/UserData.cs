@@ -66,7 +66,58 @@ namespace HeznekLaatid
             }
 
         }
-       
+
+        public static ArrayList getAllStudentsFromSpecificCity(String city)
+        {
+            //give all the students in the table that are from a specific city
+            using (var db = new HeznekDBE())
+            {
+                //get the serial number of the specific city
+                int sn = ForeignKeys.getCityNumberByName(city);
+
+                List<userTbl> students = getAllStudents().ToList();
+                ArrayList studentsAL = new ArrayList();
+
+                foreach (var student in students)
+                {
+                    if(student.status < 4 && student.cityNumber == sn)
+                    {
+                        studentsAL.Add(student);
+                    }
+                }
+
+                return studentsAL;
+
+               /* var query = (from userTbl in db.userTbl
+                             where (userTbl.cityNumber.Value == sn && userTbl.status < 4)
+                             select userTbl);
+                var students = query.ToList();
+                return students;*/
+            }
+        }
+
+        public static ArrayList getAllCandidatesFromSpecificCity(String city)
+        {
+            //give all the candidates in the table that are from a specific city
+            using (var db = new HeznekDBE())
+            {
+                //get the serial number of the specific city
+                int sn = ForeignKeys.getCityNumberByName(city);
+
+                List<userTbl> candidates = getAllStudents().ToList();
+                ArrayList candidatesAL = new ArrayList();
+
+                foreach (var candiate in candidates)
+                {
+                    if (candiate.status < 4 && candiate.cityNumber == sn)
+                    {
+                        candidatesAL.Add(candiate);
+                    }
+                }
+                return candidatesAL;
+            }
+        }
+
         public static userTbl getSpecificUserById(char id)
         {
             //gets a specific user by Id(table key) from the list of users
@@ -125,6 +176,66 @@ namespace HeznekLaatid
             }
         }
 
+        public static ArrayList getStudentsByPsychometric(int grade)
+        {
+            /*filter students table by psychometric grade - get all the students with
+              equal or greater grade*/
+            using (var db = new HeznekDBE())
+            {
+                List<userTbl> students = getAllStudents().ToList();
+                ArrayList studentsAL = new ArrayList();
+
+                foreach (var student in students)
+                {
+                    if (student.psychometricGrade >= grade)
+                    {
+                        studentsAL.Add(student);
+                    }
+                }
+                return studentsAL;
+            }
+        }
+
+        public static ArrayList getCandidatesByPsychometric(int grade)
+        {
+            /*filter candidates table by psychometric grade - get all the users with
+              equal or greater grade*/
+            using (var db = new HeznekDBE())
+            {
+                List<userTbl> candidates = getAllCandidates().ToList();
+                ArrayList candidatesAL = new ArrayList();
+
+                foreach (var candidate in candidates)
+                {
+                    if (candidate.psychometricGrade >= grade)
+                    {
+                        candidatesAL.Add(candidate);
+                    }
+                }
+                return candidatesAL;
+            }
+        }
+
+        
+        public static ArrayList getStudentsAverege(int avergeGrade)
+        {
+            /*filter students table by averege dergree grade - get all the students with
+              equal or greater grade averege degree*/
+            using (var db = new HeznekDBE())
+            {
+                List<userTbl> students = getAllStudents().ToList();
+                ArrayList studentsAL = new ArrayList();
+
+                foreach (var student in students)
+                {
+                    if (student.psychometricGrade >= avergeGrade)
+                    {
+                        studentsAL.Add(student);
+                    }
+                }
+                return studentsAL;
+            }
+        }
 
         
 
