@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HeznekDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HeznekDBEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="academicInstitutTbl">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameOfInstitut" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="placeOfInstitute" Type="int" />
+        </EntityType>
         <EntityType Name="bank">
           <Key>
             <PropertyRef Name="sn" />
@@ -151,7 +159,7 @@
           <Property Name="school" Type="nvarchar" MaxLength="4000" />
           <Property Name="yearFinishSchool" Type="int" />
           <Property Name="typeOfService" Type="int" Nullable="false" />
-          <Property Name="academicInstitution" Type="nvarchar" MaxLength="4000" />
+          <Property Name="academicInstitution" Type="int" />
           <Property Name="studyField" Type="int" />
           <Property Name="startYear" Type="int" />
           <Property Name="excpectedCompletionYear" Type="int" />
@@ -163,6 +171,9 @@
           <Property Name="bankName" Type="int" />
           <Property Name="numOfBank" Type="int" />
           <Property Name="numAccount" Type="int" />
+          <Property Name="avergeDegree" Type="int" />
+          <Property Name="typeOfDegree" Type="int" />
+          <Property Name="comments" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="userTypeTbl">
           <Key>
@@ -171,7 +182,19 @@
           <Property Name="numOfType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userType" Type="nvarchar" MaxLength="300" Nullable="false" />
         </EntityType>
-        <Association Name="FK__contactSt__idCan__44CA3770">
+        <Association Name="FK__academicI__place__625A9A57">
+          <End Role="cityTbl" Type="Self.cityTbl" Multiplicity="0..1" />
+          <End Role="academicInstitutTbl" Type="Self.academicInstitutTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cityTbl">
+              <PropertyRef Name="sn" />
+            </Principal>
+            <Dependent Role="academicInstitutTbl">
+              <PropertyRef Name="placeOfInstitute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__contactSt__idCan__6AEFE058">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="contactStudentCandidate" Type="Self.contactStudentCandidate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -183,7 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__contactSt__idStu__43D61337">
+        <Association Name="FK__contactSt__idStu__69FBBC1F">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="contactStudentCandidate" Type="Self.contactStudentCandidate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -195,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__files__idOfTheUp__4B7734FF">
+        <Association Name="FK__files__idOfTheUp__6CD828CA">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="files" Type="Self.files" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__loginAndPerm__id__2EDAF651">
+        <Association Name="FK__loginAndPerm__id__662B2B3B">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="loginAndPermissions" Type="Self.loginAndPermissions" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -231,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__messages__idReci__3D2915A8">
+        <Association Name="FK__messages__idReci__681373AD">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="messages" Type="Self.messages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,7 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__messages__idSend__3C34F16F">
+        <Association Name="FK__messages__idSend__671F4F74">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="messages" Type="Self.messages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -255,7 +278,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__participantI__id__40F9A68C">
+        <Association Name="FK__participantI__id__690797E6">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="participantInEvent" Type="Self.participantInEvent" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,7 +302,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__studentSchol__id__47A6A41B">
+        <Association Name="FK__studentSchol__id__6BE40491">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="studentScholarship" Type="Self.studentScholarship" Multiplicity="*" />
           <ReferentialConstraint>
@@ -303,7 +326,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__bankNam__0C85DE4D">
+        <Association Name="FK__userTbl__academi__72910220">
+          <End Role="academicInstitutTbl" Type="Self.academicInstitutTbl" Multiplicity="0..1" />
+          <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academicInstitutTbl">
+              <PropertyRef Name="sn" />
+            </Principal>
+            <Dependent Role="userTbl">
+              <PropertyRef Name="academicInstitution" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userTbl__bankNam__719CDDE7">
           <End Role="bank" Type="Self.bank" Multiplicity="0..1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,7 +350,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__cityNum__09A971A2">
+        <Association Name="FK__userTbl__cityNum__6EC0713C">
           <End Role="cityTbl" Type="Self.cityTbl" Multiplicity="0..1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,7 +362,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__status__08B54D69">
+        <Association Name="FK__userTbl__status__6DCC4D03">
           <End Role="statusTbl" Type="Self.statusTbl" Multiplicity="1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -339,7 +374,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__studyFi__0B91BA14">
+        <Association Name="FK__userTbl__studyFi__70A8B9AE">
           <End Role="studyFieldTbl" Type="Self.studyFieldTbl" Multiplicity="0..1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,7 +386,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__typeOfS__0A9D95DB">
+        <Association Name="FK__userTbl__typeOfS__6FB49575">
           <End Role="serviceTbl" Type="Self.serviceTbl" Multiplicity="1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -363,7 +398,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HeznekDBModelStoreContainer">
+        <EntityContainer Name="HeznekDBEntitiesStoreContainer">
+          <EntitySet Name="academicInstitutTbl" EntityType="Self.academicInstitutTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bank" EntityType="Self.bank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cityTbl" EntityType="Self.cityTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contactStudentCandidate" EntityType="Self.contactStudentCandidate" Schema="dbo" store:Type="Tables" />
@@ -379,15 +415,19 @@
           <EntitySet Name="studyFieldTbl" EntityType="Self.studyFieldTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="userTbl" EntityType="Self.userTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="userTypeTbl" EntityType="Self.userTypeTbl" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__contactSt__idCan__44CA3770" Association="Self.FK__contactSt__idCan__44CA3770">
+          <AssociationSet Name="FK__academicI__place__625A9A57" Association="Self.FK__academicI__place__625A9A57">
+            <End Role="cityTbl" EntitySet="cityTbl" />
+            <End Role="academicInstitutTbl" EntitySet="academicInstitutTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__contactSt__idCan__6AEFE058" Association="Self.FK__contactSt__idCan__6AEFE058">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="contactStudentCandidate" EntitySet="contactStudentCandidate" />
           </AssociationSet>
-          <AssociationSet Name="FK__contactSt__idStu__43D61337" Association="Self.FK__contactSt__idStu__43D61337">
+          <AssociationSet Name="FK__contactSt__idStu__69FBBC1F" Association="Self.FK__contactSt__idStu__69FBBC1F">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="contactStudentCandidate" EntitySet="contactStudentCandidate" />
           </AssociationSet>
-          <AssociationSet Name="FK__files__idOfTheUp__4B7734FF" Association="Self.FK__files__idOfTheUp__4B7734FF">
+          <AssociationSet Name="FK__files__idOfTheUp__6CD828CA" Association="Self.FK__files__idOfTheUp__6CD828CA">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="files" EntitySet="files" />
           </AssociationSet>
@@ -395,19 +435,19 @@
             <End Role="userTypeTbl" EntitySet="userTypeTbl" />
             <End Role="loginAndPermissions" EntitySet="loginAndPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__loginAndPerm__id__2EDAF651" Association="Self.FK__loginAndPerm__id__2EDAF651">
+          <AssociationSet Name="FK__loginAndPerm__id__662B2B3B" Association="Self.FK__loginAndPerm__id__662B2B3B">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="loginAndPermissions" EntitySet="loginAndPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__messages__idReci__3D2915A8" Association="Self.FK__messages__idReci__3D2915A8">
+          <AssociationSet Name="FK__messages__idReci__681373AD" Association="Self.FK__messages__idReci__681373AD">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="messages" EntitySet="messages" />
           </AssociationSet>
-          <AssociationSet Name="FK__messages__idSend__3C34F16F" Association="Self.FK__messages__idSend__3C34F16F">
+          <AssociationSet Name="FK__messages__idSend__671F4F74" Association="Self.FK__messages__idSend__671F4F74">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="messages" EntitySet="messages" />
           </AssociationSet>
-          <AssociationSet Name="FK__participantI__id__40F9A68C" Association="Self.FK__participantI__id__40F9A68C">
+          <AssociationSet Name="FK__participantI__id__690797E6" Association="Self.FK__participantI__id__690797E6">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="participantInEvent" EntitySet="participantInEvent" />
           </AssociationSet>
@@ -415,7 +455,7 @@
             <End Role="eventTbl" EntitySet="eventTbl" />
             <End Role="participantInEvent" EntitySet="participantInEvent" />
           </AssociationSet>
-          <AssociationSet Name="FK__studentSchol__id__47A6A41B" Association="Self.FK__studentSchol__id__47A6A41B">
+          <AssociationSet Name="FK__studentSchol__id__6BE40491" Association="Self.FK__studentSchol__id__6BE40491">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="studentScholarship" EntitySet="studentScholarship" />
           </AssociationSet>
@@ -423,23 +463,27 @@
             <End Role="scholarship" EntitySet="scholarship" />
             <End Role="studentScholarship" EntitySet="studentScholarship" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__bankNam__0C85DE4D" Association="Self.FK__userTbl__bankNam__0C85DE4D">
+          <AssociationSet Name="FK__userTbl__academi__72910220" Association="Self.FK__userTbl__academi__72910220">
+            <End Role="academicInstitutTbl" EntitySet="academicInstitutTbl" />
+            <End Role="userTbl" EntitySet="userTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userTbl__bankNam__719CDDE7" Association="Self.FK__userTbl__bankNam__719CDDE7">
             <End Role="bank" EntitySet="bank" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__cityNum__09A971A2" Association="Self.FK__userTbl__cityNum__09A971A2">
+          <AssociationSet Name="FK__userTbl__cityNum__6EC0713C" Association="Self.FK__userTbl__cityNum__6EC0713C">
             <End Role="cityTbl" EntitySet="cityTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__status__08B54D69" Association="Self.FK__userTbl__status__08B54D69">
+          <AssociationSet Name="FK__userTbl__status__6DCC4D03" Association="Self.FK__userTbl__status__6DCC4D03">
             <End Role="statusTbl" EntitySet="statusTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__studyFi__0B91BA14" Association="Self.FK__userTbl__studyFi__0B91BA14">
+          <AssociationSet Name="FK__userTbl__studyFi__70A8B9AE" Association="Self.FK__userTbl__studyFi__70A8B9AE">
             <End Role="studyFieldTbl" EntitySet="studyFieldTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__typeOfS__0A9D95DB" Association="Self.FK__userTbl__typeOfS__0A9D95DB">
+          <AssociationSet Name="FK__userTbl__typeOfS__6FB49575" Association="Self.FK__userTbl__typeOfS__6FB49575">
             <End Role="serviceTbl" EntitySet="serviceTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
@@ -448,14 +492,24 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HeznekDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HeznekDBEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="academicInstitutTbl">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameOfInstitut" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="placeOfInstitute" Type="Int32" />
+          <NavigationProperty Name="cityTbl" Relationship="Self.FK__academicI__place__625A9A57" FromRole="academicInstitutTbl" ToRole="cityTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__academi__72910220" FromRole="academicInstitutTbl" ToRole="userTbl" />
+        </EntityType>
         <EntityType Name="bank">
           <Key>
             <PropertyRef Name="sn" />
           </Key>
           <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__bankNam__0C85DE4D" FromRole="bank" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__bankNam__719CDDE7" FromRole="bank" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="cityTbl">
           <Key>
@@ -463,7 +517,8 @@
           </Key>
           <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="city" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__cityNum__09A971A2" FromRole="cityTbl" ToRole="userTbl" />
+          <NavigationProperty Name="academicInstitutTbl" Relationship="Self.FK__academicI__place__625A9A57" FromRole="cityTbl" ToRole="academicInstitutTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__cityNum__6EC0713C" FromRole="cityTbl" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="contactStudentCandidate">
           <Key>
@@ -474,8 +529,8 @@
           <Property Name="idCandidate" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="dateOfCall" Type="DateTime" Precision="0" />
           <Property Name="updating" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__contactSt__idCan__44CA3770" FromRole="contactStudentCandidate" ToRole="userTbl" />
-          <NavigationProperty Name="userTbl1" Relationship="Self.FK__contactSt__idStu__43D61337" FromRole="contactStudentCandidate" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__contactSt__idCan__6AEFE058" FromRole="contactStudentCandidate" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl1" Relationship="Self.FK__contactSt__idStu__69FBBC1F" FromRole="contactStudentCandidate" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="eventTbl">
           <Key>
@@ -500,7 +555,7 @@
           <Property Name="nameOfFile" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="idOfTheUploader" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="fileLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__files__idOfTheUp__4B7734FF" FromRole="files" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__files__idOfTheUp__6CD828CA" FromRole="files" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="loginAndPermissions">
           <Key>
@@ -510,7 +565,7 @@
           <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="userType" Type="Int32" Nullable="false" />
           <NavigationProperty Name="userTypeTbl" Relationship="Self.FK__loginAndP__userT__2FCF1A8A" FromRole="loginAndPermissions" ToRole="userTypeTbl" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__loginAndPerm__id__2EDAF651" FromRole="loginAndPermissions" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__loginAndPerm__id__662B2B3B" FromRole="loginAndPermissions" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
@@ -525,8 +580,8 @@
           <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="hour" Type="Time" Precision="7" />
           <Property Name="dateOfMessage" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__messages__idReci__3D2915A8" FromRole="messages" ToRole="userTbl" />
-          <NavigationProperty Name="userTbl1" Relationship="Self.FK__messages__idSend__3C34F16F" FromRole="messages" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__messages__idReci__681373AD" FromRole="messages" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl1" Relationship="Self.FK__messages__idSend__671F4F74" FromRole="messages" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="scholarship">
           <Key>
@@ -546,7 +601,7 @@
           <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="typeOfService" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="longOfService" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__typeOfS__0A9D95DB" FromRole="serviceTbl" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__typeOfS__6FB49575" FromRole="serviceTbl" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="statusTbl">
           <Key>
@@ -555,7 +610,7 @@
           <Property Name="numOfStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="primaryStatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="secondaryStatusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__status__08B54D69" FromRole="statusTbl" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__status__6DCC4D03" FromRole="statusTbl" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="studentScholarship">
           <Key>
@@ -571,7 +626,7 @@
           <Property Name="numOfVolunteerHours" Type="Int32" />
           <Property Name="numOfHoursDone" Type="Int32" />
           <NavigationProperty Name="scholarship" Relationship="Self.FK__studentSchol__sn__489AC854" FromRole="studentScholarship" ToRole="scholarship" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__studentSchol__id__47A6A41B" FromRole="studentScholarship" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__studentSchol__id__6BE40491" FromRole="studentScholarship" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="studyFieldTbl">
           <Key>
@@ -580,7 +635,7 @@
           <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="field" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="nameOfDegree" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__studyFi__0B91BA14" FromRole="studyFieldTbl" ToRole="userTbl" />
+          <NavigationProperty Name="userTbl" Relationship="Self.FK__userTbl__studyFi__70A8B9AE" FromRole="studyFieldTbl" ToRole="userTbl" />
         </EntityType>
         <EntityType Name="userTbl">
           <Key>
@@ -603,7 +658,7 @@
           <Property Name="school" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="yearFinishSchool" Type="Int32" />
           <Property Name="typeOfService" Type="Int32" Nullable="false" />
-          <Property Name="academicInstitution" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="academicInstitution" Type="Int32" />
           <Property Name="studyField" Type="Int32" />
           <Property Name="startYear" Type="Int32" />
           <Property Name="excpectedCompletionYear" Type="Int32" />
@@ -615,18 +670,22 @@
           <Property Name="bankName" Type="Int32" />
           <Property Name="numOfBank" Type="Int32" />
           <Property Name="numAccount" Type="Int32" />
-          <NavigationProperty Name="bank" Relationship="Self.FK__userTbl__bankNam__0C85DE4D" FromRole="userTbl" ToRole="bank" />
-          <NavigationProperty Name="cityTbl" Relationship="Self.FK__userTbl__cityNum__09A971A2" FromRole="userTbl" ToRole="cityTbl" />
-          <NavigationProperty Name="contactStudentCandidate" Relationship="Self.FK__contactSt__idCan__44CA3770" FromRole="userTbl" ToRole="contactStudentCandidate" />
-          <NavigationProperty Name="contactStudentCandidate1" Relationship="Self.FK__contactSt__idStu__43D61337" FromRole="userTbl" ToRole="contactStudentCandidate" />
-          <NavigationProperty Name="files" Relationship="Self.FK__files__idOfTheUp__4B7734FF" FromRole="userTbl" ToRole="files" />
-          <NavigationProperty Name="loginAndPermissions" Relationship="Self.FK__loginAndPerm__id__2EDAF651" FromRole="userTbl" ToRole="loginAndPermissions" />
-          <NavigationProperty Name="messages" Relationship="Self.FK__messages__idReci__3D2915A8" FromRole="userTbl" ToRole="messages" />
-          <NavigationProperty Name="messages1" Relationship="Self.FK__messages__idSend__3C34F16F" FromRole="userTbl" ToRole="messages" />
-          <NavigationProperty Name="serviceTbl" Relationship="Self.FK__userTbl__typeOfS__0A9D95DB" FromRole="userTbl" ToRole="serviceTbl" />
-          <NavigationProperty Name="statusTbl" Relationship="Self.FK__userTbl__status__08B54D69" FromRole="userTbl" ToRole="statusTbl" />
-          <NavigationProperty Name="studentScholarship" Relationship="Self.FK__studentSchol__id__47A6A41B" FromRole="userTbl" ToRole="studentScholarship" />
-          <NavigationProperty Name="studyFieldTbl" Relationship="Self.FK__userTbl__studyFi__0B91BA14" FromRole="userTbl" ToRole="studyFieldTbl" />
+          <Property Name="avergeDegree" Type="Int32" />
+          <Property Name="typeOfDegree" Type="Int32" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="academicInstitutTbl" Relationship="Self.FK__userTbl__academi__72910220" FromRole="userTbl" ToRole="academicInstitutTbl" />
+          <NavigationProperty Name="bank" Relationship="Self.FK__userTbl__bankNam__719CDDE7" FromRole="userTbl" ToRole="bank" />
+          <NavigationProperty Name="cityTbl" Relationship="Self.FK__userTbl__cityNum__6EC0713C" FromRole="userTbl" ToRole="cityTbl" />
+          <NavigationProperty Name="contactStudentCandidate" Relationship="Self.FK__contactSt__idCan__6AEFE058" FromRole="userTbl" ToRole="contactStudentCandidate" />
+          <NavigationProperty Name="contactStudentCandidate1" Relationship="Self.FK__contactSt__idStu__69FBBC1F" FromRole="userTbl" ToRole="contactStudentCandidate" />
+          <NavigationProperty Name="files" Relationship="Self.FK__files__idOfTheUp__6CD828CA" FromRole="userTbl" ToRole="files" />
+          <NavigationProperty Name="loginAndPermissions" Relationship="Self.FK__loginAndPerm__id__662B2B3B" FromRole="userTbl" ToRole="loginAndPermissions" />
+          <NavigationProperty Name="messages" Relationship="Self.FK__messages__idReci__681373AD" FromRole="userTbl" ToRole="messages" />
+          <NavigationProperty Name="messages1" Relationship="Self.FK__messages__idSend__671F4F74" FromRole="userTbl" ToRole="messages" />
+          <NavigationProperty Name="serviceTbl" Relationship="Self.FK__userTbl__typeOfS__6FB49575" FromRole="userTbl" ToRole="serviceTbl" />
+          <NavigationProperty Name="statusTbl" Relationship="Self.FK__userTbl__status__6DCC4D03" FromRole="userTbl" ToRole="statusTbl" />
+          <NavigationProperty Name="studentScholarship" Relationship="Self.FK__studentSchol__id__6BE40491" FromRole="userTbl" ToRole="studentScholarship" />
+          <NavigationProperty Name="studyFieldTbl" Relationship="Self.FK__userTbl__studyFi__70A8B9AE" FromRole="userTbl" ToRole="studyFieldTbl" />
           <NavigationProperty Name="eventTbl" Relationship="Self.participantInEvent" FromRole="userTbl" ToRole="eventTbl" />
         </EntityType>
         <EntityType Name="userTypeTbl">
@@ -637,7 +696,31 @@
           <Property Name="userType" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="loginAndPermissions" Relationship="Self.FK__loginAndP__userT__2FCF1A8A" FromRole="userTypeTbl" ToRole="loginAndPermissions" />
         </EntityType>
-        <Association Name="FK__userTbl__bankNam__0C85DE4D">
+        <Association Name="FK__academicI__place__625A9A57">
+          <End Role="cityTbl" Type="Self.cityTbl" Multiplicity="0..1" />
+          <End Role="academicInstitutTbl" Type="Self.academicInstitutTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cityTbl">
+              <PropertyRef Name="sn" />
+            </Principal>
+            <Dependent Role="academicInstitutTbl">
+              <PropertyRef Name="placeOfInstitute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userTbl__academi__72910220">
+          <End Role="academicInstitutTbl" Type="Self.academicInstitutTbl" Multiplicity="0..1" />
+          <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academicInstitutTbl">
+              <PropertyRef Name="sn" />
+            </Principal>
+            <Dependent Role="userTbl">
+              <PropertyRef Name="academicInstitution" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userTbl__bankNam__719CDDE7">
           <End Role="bank" Type="Self.bank" Multiplicity="0..1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -649,7 +732,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__cityNum__09A971A2">
+        <Association Name="FK__userTbl__cityNum__6EC0713C">
           <End Role="cityTbl" Type="Self.cityTbl" Multiplicity="0..1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -661,7 +744,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__contactSt__idCan__44CA3770">
+        <Association Name="FK__contactSt__idCan__6AEFE058">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="contactStudentCandidate" Type="Self.contactStudentCandidate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -673,7 +756,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__contactSt__idStu__43D61337">
+        <Association Name="FK__contactSt__idStu__69FBBC1F">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="contactStudentCandidate" Type="Self.contactStudentCandidate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -685,7 +768,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__files__idOfTheUp__4B7734FF">
+        <Association Name="FK__files__idOfTheUp__6CD828CA">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="files" Type="Self.files" Multiplicity="*" />
           <ReferentialConstraint>
@@ -709,7 +792,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__loginAndPerm__id__2EDAF651">
+        <Association Name="FK__loginAndPerm__id__662B2B3B">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="loginAndPermissions" Type="Self.loginAndPermissions" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -721,7 +804,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__messages__idReci__3D2915A8">
+        <Association Name="FK__messages__idReci__681373AD">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="messages" Type="Self.messages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -733,7 +816,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__messages__idSend__3C34F16F">
+        <Association Name="FK__messages__idSend__671F4F74">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="messages" Type="Self.messages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -757,7 +840,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__typeOfS__0A9D95DB">
+        <Association Name="FK__userTbl__typeOfS__6FB49575">
           <End Role="serviceTbl" Type="Self.serviceTbl" Multiplicity="1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -769,7 +852,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__status__08B54D69">
+        <Association Name="FK__userTbl__status__6DCC4D03">
           <End Role="statusTbl" Type="Self.statusTbl" Multiplicity="1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -781,7 +864,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__studentSchol__id__47A6A41B">
+        <Association Name="FK__studentSchol__id__6BE40491">
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="1" />
           <End Role="studentScholarship" Type="Self.studentScholarship" Multiplicity="*" />
           <ReferentialConstraint>
@@ -793,7 +876,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__userTbl__studyFi__0B91BA14">
+        <Association Name="FK__userTbl__studyFi__70A8B9AE">
           <End Role="studyFieldTbl" Type="Self.studyFieldTbl" Multiplicity="0..1" />
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <ReferentialConstraint>
@@ -809,7 +892,8 @@
           <End Role="userTbl" Type="Self.userTbl" Multiplicity="*" />
           <End Role="eventTbl" Type="Self.eventTbl" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="HeznekDBE" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HeznekDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="academicInstitutTbl" EntityType="Self.academicInstitutTbl" />
           <EntitySet Name="bank" EntityType="Self.bank" />
           <EntitySet Name="cityTbl" EntityType="Self.cityTbl" />
           <EntitySet Name="contactStudentCandidate" EntityType="Self.contactStudentCandidate" />
@@ -824,23 +908,31 @@
           <EntitySet Name="studyFieldTbl" EntityType="Self.studyFieldTbl" />
           <EntitySet Name="userTbl" EntityType="Self.userTbl" />
           <EntitySet Name="userTypeTbl" EntityType="Self.userTypeTbl" />
-          <AssociationSet Name="FK__userTbl__bankNam__0C85DE4D" Association="Self.FK__userTbl__bankNam__0C85DE4D">
+          <AssociationSet Name="FK__academicI__place__625A9A57" Association="Self.FK__academicI__place__625A9A57">
+            <End Role="cityTbl" EntitySet="cityTbl" />
+            <End Role="academicInstitutTbl" EntitySet="academicInstitutTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userTbl__academi__72910220" Association="Self.FK__userTbl__academi__72910220">
+            <End Role="academicInstitutTbl" EntitySet="academicInstitutTbl" />
+            <End Role="userTbl" EntitySet="userTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userTbl__bankNam__719CDDE7" Association="Self.FK__userTbl__bankNam__719CDDE7">
             <End Role="bank" EntitySet="bank" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__cityNum__09A971A2" Association="Self.FK__userTbl__cityNum__09A971A2">
+          <AssociationSet Name="FK__userTbl__cityNum__6EC0713C" Association="Self.FK__userTbl__cityNum__6EC0713C">
             <End Role="cityTbl" EntitySet="cityTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__contactSt__idCan__44CA3770" Association="Self.FK__contactSt__idCan__44CA3770">
+          <AssociationSet Name="FK__contactSt__idCan__6AEFE058" Association="Self.FK__contactSt__idCan__6AEFE058">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="contactStudentCandidate" EntitySet="contactStudentCandidate" />
           </AssociationSet>
-          <AssociationSet Name="FK__contactSt__idStu__43D61337" Association="Self.FK__contactSt__idStu__43D61337">
+          <AssociationSet Name="FK__contactSt__idStu__69FBBC1F" Association="Self.FK__contactSt__idStu__69FBBC1F">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="contactStudentCandidate" EntitySet="contactStudentCandidate" />
           </AssociationSet>
-          <AssociationSet Name="FK__files__idOfTheUp__4B7734FF" Association="Self.FK__files__idOfTheUp__4B7734FF">
+          <AssociationSet Name="FK__files__idOfTheUp__6CD828CA" Association="Self.FK__files__idOfTheUp__6CD828CA">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="files" EntitySet="files" />
           </AssociationSet>
@@ -848,15 +940,15 @@
             <End Role="userTypeTbl" EntitySet="userTypeTbl" />
             <End Role="loginAndPermissions" EntitySet="loginAndPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__loginAndPerm__id__2EDAF651" Association="Self.FK__loginAndPerm__id__2EDAF651">
+          <AssociationSet Name="FK__loginAndPerm__id__662B2B3B" Association="Self.FK__loginAndPerm__id__662B2B3B">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="loginAndPermissions" EntitySet="loginAndPermissions" />
           </AssociationSet>
-          <AssociationSet Name="FK__messages__idReci__3D2915A8" Association="Self.FK__messages__idReci__3D2915A8">
+          <AssociationSet Name="FK__messages__idReci__681373AD" Association="Self.FK__messages__idReci__681373AD">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="messages" EntitySet="messages" />
           </AssociationSet>
-          <AssociationSet Name="FK__messages__idSend__3C34F16F" Association="Self.FK__messages__idSend__3C34F16F">
+          <AssociationSet Name="FK__messages__idSend__671F4F74" Association="Self.FK__messages__idSend__671F4F74">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="messages" EntitySet="messages" />
           </AssociationSet>
@@ -864,19 +956,19 @@
             <End Role="scholarship" EntitySet="scholarship" />
             <End Role="studentScholarship" EntitySet="studentScholarship" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__typeOfS__0A9D95DB" Association="Self.FK__userTbl__typeOfS__0A9D95DB">
+          <AssociationSet Name="FK__userTbl__typeOfS__6FB49575" Association="Self.FK__userTbl__typeOfS__6FB49575">
             <End Role="serviceTbl" EntitySet="serviceTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__status__08B54D69" Association="Self.FK__userTbl__status__08B54D69">
+          <AssociationSet Name="FK__userTbl__status__6DCC4D03" Association="Self.FK__userTbl__status__6DCC4D03">
             <End Role="statusTbl" EntitySet="statusTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
-          <AssociationSet Name="FK__studentSchol__id__47A6A41B" Association="Self.FK__studentSchol__id__47A6A41B">
+          <AssociationSet Name="FK__studentSchol__id__6BE40491" Association="Self.FK__studentSchol__id__6BE40491">
             <End Role="userTbl" EntitySet="userTbl" />
             <End Role="studentScholarship" EntitySet="studentScholarship" />
           </AssociationSet>
-          <AssociationSet Name="FK__userTbl__studyFi__0B91BA14" Association="Self.FK__userTbl__studyFi__0B91BA14">
+          <AssociationSet Name="FK__userTbl__studyFi__70A8B9AE" Association="Self.FK__userTbl__studyFi__70A8B9AE">
             <End Role="studyFieldTbl" EntitySet="studyFieldTbl" />
             <End Role="userTbl" EntitySet="userTbl" />
           </AssociationSet>
@@ -890,9 +982,18 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HeznekDBModelStoreContainer" CdmEntityContainer="HeznekDBE">
+        <EntityContainerMapping StorageEntityContainer="HeznekDBEntitiesStoreContainer" CdmEntityContainer="HeznekDB">
+          <EntitySetMapping Name="academicInstitutTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.academicInstitutTbl">
+              <MappingFragment StoreEntitySet="academicInstitutTbl">
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="nameOfInstitut" ColumnName="nameOfInstitut" />
+                <ScalarProperty Name="placeOfInstitute" ColumnName="placeOfInstitute" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="bank">
-            <EntityTypeMapping TypeName="HeznekDBModel.bank">
+            <EntityTypeMapping TypeName="HeznekDBEntities.bank">
               <MappingFragment StoreEntitySet="bank">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -900,7 +1001,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cityTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.cityTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.cityTbl">
               <MappingFragment StoreEntitySet="cityTbl">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="city" ColumnName="city" />
@@ -908,7 +1009,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="contactStudentCandidate">
-            <EntityTypeMapping TypeName="HeznekDBModel.contactStudentCandidate">
+            <EntityTypeMapping TypeName="HeznekDBEntities.contactStudentCandidate">
               <MappingFragment StoreEntitySet="contactStudentCandidate">
                 <ScalarProperty Name="idStudent" ColumnName="idStudent" />
                 <ScalarProperty Name="idCandidate" ColumnName="idCandidate" />
@@ -918,7 +1019,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="eventTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.eventTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.eventTbl">
               <MappingFragment StoreEntitySet="eventTbl">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="nameEvent" ColumnName="nameEvent" />
@@ -933,7 +1034,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="files">
-            <EntityTypeMapping TypeName="HeznekDBModel.files">
+            <EntityTypeMapping TypeName="HeznekDBEntities.files">
               <MappingFragment StoreEntitySet="files">
                 <ScalarProperty Name="nameOfFile" ColumnName="nameOfFile" />
                 <ScalarProperty Name="idOfTheUploader" ColumnName="idOfTheUploader" />
@@ -942,7 +1043,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="loginAndPermissions">
-            <EntityTypeMapping TypeName="HeznekDBModel.loginAndPermissions">
+            <EntityTypeMapping TypeName="HeznekDBEntities.loginAndPermissions">
               <MappingFragment StoreEntitySet="loginAndPermissions">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -951,7 +1052,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="messages">
-            <EntityTypeMapping TypeName="HeznekDBModel.messages">
+            <EntityTypeMapping TypeName="HeznekDBEntities.messages">
               <MappingFragment StoreEntitySet="messages">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="idSender" ColumnName="idSender" />
@@ -964,7 +1065,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="scholarship">
-            <EntityTypeMapping TypeName="HeznekDBModel.scholarship">
+            <EntityTypeMapping TypeName="HeznekDBEntities.scholarship">
               <MappingFragment StoreEntitySet="scholarship">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="scholarshipName" ColumnName="scholarshipName" />
@@ -975,7 +1076,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="serviceTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.serviceTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.serviceTbl">
               <MappingFragment StoreEntitySet="serviceTbl">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="typeOfService" ColumnName="typeOfService" />
@@ -984,7 +1085,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="statusTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.statusTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.statusTbl">
               <MappingFragment StoreEntitySet="statusTbl">
                 <ScalarProperty Name="numOfStatus" ColumnName="numOfStatus" />
                 <ScalarProperty Name="primaryStatusName" ColumnName="primaryStatusName" />
@@ -993,7 +1094,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="studentScholarship">
-            <EntityTypeMapping TypeName="HeznekDBModel.studentScholarship">
+            <EntityTypeMapping TypeName="HeznekDBEntities.studentScholarship">
               <MappingFragment StoreEntitySet="studentScholarship">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sn" ColumnName="sn" />
@@ -1007,7 +1108,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="studyFieldTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.studyFieldTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.studyFieldTbl">
               <MappingFragment StoreEntitySet="studyFieldTbl">
                 <ScalarProperty Name="sn" ColumnName="sn" />
                 <ScalarProperty Name="field" ColumnName="field" />
@@ -1016,7 +1117,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="userTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.userTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.userTbl">
               <MappingFragment StoreEntitySet="userTbl">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
@@ -1047,18 +1148,21 @@
                 <ScalarProperty Name="bankName" ColumnName="bankName" />
                 <ScalarProperty Name="numOfBank" ColumnName="numOfBank" />
                 <ScalarProperty Name="numAccount" ColumnName="numAccount" />
+                <ScalarProperty Name="avergeDegree" ColumnName="avergeDegree" />
+                <ScalarProperty Name="typeOfDegree" ColumnName="typeOfDegree" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="userTypeTbl">
-            <EntityTypeMapping TypeName="HeznekDBModel.userTypeTbl">
+            <EntityTypeMapping TypeName="HeznekDBEntities.userTypeTbl">
               <MappingFragment StoreEntitySet="userTypeTbl">
                 <ScalarProperty Name="numOfType" ColumnName="numOfType" />
                 <ScalarProperty Name="userType" ColumnName="userType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="participantInEvent" TypeName="HeznekDBModel.participantInEvent" StoreEntitySet="participantInEvent">
+          <AssociationSetMapping Name="participantInEvent" TypeName="HeznekDBEntities.participantInEvent" StoreEntitySet="participantInEvent">
             <EndProperty Name="userTbl">
               <ScalarProperty Name="id" ColumnName="id" />
             </EndProperty>

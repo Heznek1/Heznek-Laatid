@@ -12,7 +12,7 @@ namespace HeznekLaatid
     {
         static void Main(String[] args)
         {
-                var db = new HeznekDBE();
+                var db = new HeznekDB();
             /*
             var studyField = new studyFieldTbl()
             {

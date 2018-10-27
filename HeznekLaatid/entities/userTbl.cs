@@ -43,7 +43,7 @@ namespace HeznekLaatid.entities
         public string school { get; set; }
         public Nullable<int> yearFinishSchool { get; set; }
         public int typeOfService { get; set; }
-        public string academicInstitution { get; set; }
+        public Nullable<int> academicInstitution { get; set; }
         public Nullable<int> studyField { get; set; }
         public Nullable<int> startYear { get; set; }
         public Nullable<int> excpectedCompletionYear { get; set; }
@@ -55,7 +55,11 @@ namespace HeznekLaatid.entities
         public Nullable<int> bankName { get; set; }
         public Nullable<int> numOfBank { get; set; }
         public Nullable<int> numAccount { get; set; }
+        public Nullable<int> avergeDegree { get; set; }
+        public Nullable<int> typeOfDegree { get; set; }
+        public string comments { get; set; }
     
+        public virtual academicInstitutTbl academicInstitutTbl { get; set; }
         public virtual bank bank { get; set; }
         public virtual cityTbl cityTbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

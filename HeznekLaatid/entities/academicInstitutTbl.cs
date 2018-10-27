@@ -12,20 +12,19 @@ namespace HeznekLaatid.entities
     using System;
     using System.Collections.Generic;
     
-    public partial class cityTbl
+    public partial class academicInstitutTbl
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public cityTbl()
+        public academicInstitutTbl()
         {
-            this.academicInstitutTbl = new HashSet<academicInstitutTbl>();
             this.userTbl = new HashSet<userTbl>();
         }
     
         public int sn { get; set; }
-        public string city { get; set; }
+        public string nameOfInstitut { get; set; }
+        public Nullable<int> placeOfInstitute { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<academicInstitutTbl> academicInstitutTbl { get; set; }
+        public virtual cityTbl cityTbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userTbl> userTbl { get; set; }
     }

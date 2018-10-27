@@ -13,10 +13,10 @@ namespace HeznekLaatid.entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HeznekDBE : DbContext
+    public partial class HeznekDB : DbContext
     {
-        public HeznekDBE()
-            : base("name=HeznekDBE")
+        public HeznekDB()
+            : base("name=HeznekDB")
         {
         }
     
@@ -25,6 +25,7 @@ namespace HeznekLaatid.entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<academicInstitutTbl> academicInstitutTbl { get; set; }
         public virtual DbSet<bank> bank { get; set; }
         public virtual DbSet<cityTbl> cityTbl { get; set; }
         public virtual DbSet<contactStudentCandidate> contactStudentCandidate { get; set; }

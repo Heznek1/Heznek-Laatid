@@ -14,7 +14,7 @@ namespace HeznekLaatid
         public static int getCityNumberByName(String city)
         {
           
-            using (var db = new HeznekDBE())
+            using (var db = new HeznekDB())
             {
                 int cityNum = 0;
                 var query = (from cityTbl in db.cityTbl
@@ -32,6 +32,54 @@ namespace HeznekLaatid
                 return cityNum;
               
             }
+        }
+
+
+
+        public static int getInstitutionNumberByName(String institue)
+        {
+
+            using (var db = new HeznekDB())
+            {
+                int instituteNum = 0;
+                var query = (from academicInstitutTbl in db.academicInstitutTbl
+                             where (academicInstitutTbl.nameOfInstitut.Equals(institue))
+                             select academicInstitutTbl.sn);
+                try
+                {
+                    instituteNum = query.Last();
+
+                }
+                catch
+                {
+                    return 0;
+                }
+                return instituteNum;
+
+            }
+        }
+
+        public static int getnumberOfFieldByName(String field)
+        {
+            int fieldNum = 0;
+            using (var db = new HeznekDB())
+            {
+                var query = (from studyFieldTbl in db.studyFieldTbl
+                             where (studyFieldTbl.field.Equals(field))
+                             select studyFieldTbl.sn);
+                try
+                {
+                    fieldNum = query.Last();
+
+                }
+                catch
+                {
+                    return 0;
+                }
+                return fieldNum;
+
+            }
+
         }
     }
 }
