@@ -19,6 +19,10 @@ namespace HeznekLaatid.entities
         {
             this.userTbl = new HashSet<userTbl>();
         }
+        public bank(string name)
+        {
+            this.name = name;
+        }
     
         public int sn { get; set; }
         public string name { get; set; }

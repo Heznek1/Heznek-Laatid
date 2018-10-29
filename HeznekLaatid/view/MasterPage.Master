@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="HeznekLaatid.view.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        #form1 {
+            height: 978px;
+        }
+        #Text1 {
+            width: 149px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server" dir="rtl">
+        <div dir="ltr" draggable="true">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" OnSelecting="SqlDataSource1_Selecting" ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" SelectCommand="SELECT firstName, lastName FROM userTbl"></asp:SqlDataSource>
+            <input type="text" placeholder="חיפוש..." dir="rtl">
+            </div>
+        <asp:Menu ID="Menu1" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" OnMenuItemClick="Menu1_MenuItemClick" RenderingMode="Table" StaticSubMenuIndent="40px" style="font-size: medium" Orientation="Horizontal" Width="950px">
+            <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+            <DynamicMenuStyle BackColor="#E3EAEB" />
+            <DynamicSelectedStyle BackColor="White" />
+            <DynamicItemTemplate>
+                <%# Eval("Text") %>
+            </DynamicItemTemplate>
+            <Items>
+                <asp:MenuItem Text="פרופיל" Value="פרופיל">
+                    <asp:MenuItem Text="הודעות" Value="הודעות"></asp:MenuItem>
+                    <asp:MenuItem Text="הגדרות" Value="הגדרות"></asp:MenuItem>
+                    <asp:MenuItem Text="התנתק" Value="התנתק"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="סטטיסטיקות" Value="statistics"></asp:MenuItem>
+                <asp:MenuItem Text="משתמשים" Value="managment">
+                    <asp:MenuItem Text="מועמדים" Value="מועמדים"></asp:MenuItem>
+                    <asp:MenuItem Text="סטודנטים" Value="סטודנטים"></asp:MenuItem>
+                    <asp:MenuItem Text="בוגרים" Value="בוגרים"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="מלגות" Value="scholarships"></asp:MenuItem>
+                <asp:MenuItem Text="אירועים\כנסים" Value="events"></asp:MenuItem>              
+            </Items>
+           
+            <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+            <StaticSelectedStyle BackColor="#CCCCFF" Font-Bold="True" />
+            <StaticItemTemplate>
+                <%# Eval("Text") %>
+            </StaticItemTemplate>
+        </asp:Menu>
+         <br>
+                <br>
+         <br>
+                
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

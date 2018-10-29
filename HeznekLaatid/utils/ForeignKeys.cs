@@ -34,8 +34,6 @@ namespace HeznekLaatid
             }
         }
 
-
-
         public static int getInstitutionNumberByName(String institue)
         {
 
@@ -80,6 +78,19 @@ namespace HeznekLaatid
 
             }
 
+        }
+
+        public static userTbl getUserConnectedByID(string id)
+        {
+            List<userTbl> users = UserData.getAllUsers();
+            foreach(var user in users)
+            {
+                if (user.id.Equals(id))
+                {
+                    return user;
+                }
+            }
+            return null;
         }
     }
 }

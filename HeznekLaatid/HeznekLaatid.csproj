@@ -89,6 +89,10 @@
       <DependentUpon>entities.edmx</DependentUpon>
       <LastGenOutput>entities.cs</LastGenOutput>
     </Content>
+    <Content Include="img\mob5tertv-profile_image-695ed5e0a42064bb-300x300.png" />
+    <Content Include="view\StudentsUsers.aspx" />
+    <Content Include="view\WebForm1.aspx" />
+    <Content Include="view\WebForm2.aspx" />
     <Content Include="Web.config" />
     <Content Include="view\loginForm.aspx" />
   </ItemGroup>
@@ -155,6 +159,9 @@
     <Compile Include="entities\userTypeTbl.cs">
       <DependentUpon>entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="model\BankData.cs" />
+    <Compile Include="model\EventData.cs" />
+    <Compile Include="model\LoginData.cs" />
     <Compile Include="model\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utils\ForeignKeys.cs" />
@@ -164,6 +171,34 @@
     </Compile>
     <Compile Include="view\loginForm.aspx.designer.cs">
       <DependentUpon>loginForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="view\StudentsUsers.aspx.cs">
+      <DependentUpon>StudentsUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\StudentsUsers.aspx.designer.cs">
+      <DependentUpon>StudentsUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +210,7 @@
       <DependentUpon>entities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="view\MasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

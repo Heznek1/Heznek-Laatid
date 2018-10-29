@@ -11,8 +11,6 @@ namespace HeznekLaatid
     class UserData
 
     {
-                                                                      /* gets functions*/
-
         public static List<userTbl> getAllUsers()
             //give all the users in the table with no filter
         {
@@ -155,7 +153,7 @@ namespace HeznekLaatid
         }*/
 
         //חוסך לי לעשות 2 פונקציות אחת של סטודנדטים ואחת של מועמדים
-        public static List<userTbl> getAllUsersFromSpecificCity(String city, List<userTbl> usersList)
+        public static List<userTbl> getAllChosenUsersFromSpecificCity(String city, List<userTbl> usersList)
         {
             int sn = ForeignKeys.getCityNumberByName(city); //get the serial number of the specific city
             List<userTbl> users = usersList;
@@ -203,7 +201,7 @@ namespace HeznekLaatid
                 return null;       
         }
 
-        //חוסך לי כמעט את כל הפונקציות 
+        //חוסך לי כמעט את כל הפונקציות //לא בטוחה כמה זה חוסך לי - לבדוק
         public static userTbl getSpecificUserById(char id, int status, List<userTbl> usersList)
         {
             List<userTbl> users = usersList;
@@ -233,7 +231,7 @@ namespace HeznekLaatid
 
 //here i stopped to improve my code
 
-
+            
         public static ArrayList getSpecificUserByFn(String fn)
         {
             //filter users table by first name- get all the users with the same first name
@@ -357,7 +355,7 @@ namespace HeznekLaatid
 
         public static ArrayList getSpecificUserByLn(String ln, int status)
         {
-            //filter users table by first name- get all the users from the same status with the same first name
+            //filter users table by last name- get all the users from the same status with the same first name
             List<userTbl> users = getUsersByStatus(status).Cast<userTbl>().ToList();
             ArrayList usersAL = new ArrayList();
 
@@ -579,7 +577,7 @@ namespace HeznekLaatid
             return candiatesAL;
         }
 
-        public static ArrayList getAllSstudentsByNumOfAcademicParents(int academicParents)
+        public static ArrayList getAllStudentsByNumOfAcademicParents(int academicParents)
         {//get all the students with specific number of academic parents
             List<userTbl> students = getAllStudents().ToList();
             ArrayList studentsAL = new ArrayList();
@@ -626,8 +624,8 @@ namespace HeznekLaatid
             }
             return studentsAL;
         }
-
-        public static ArrayList getAllStudentFromTheSameGender(char gender)
+        /*
+        public static ArrayList getAllStudentsFromTheSameGender(char gender)
         {//get all the students from the same gender 'F' = female or 'M'=male
             List<userTbl> students = getAllStudents().ToList();
             ArrayList studentsAL = new ArrayList();
@@ -657,12 +655,97 @@ namespace HeznekLaatid
             return candidatesAL;
         }
 
-        public int getAllUsersFromTheSameGender(char gender)
-        {//get all the users from the same gender 'F' = female or 'M'=male
-            return getAllCandidatesFromTheSameGender(gender).Count + getAllStudentFromTheSameGender(gender).Count;
+        
+        public static ArrayList getAllCandidatesFromTheSameGender(char gender)
+        {//get all the candidates from the same gender 'F' = female or 'M'=male
+            List<userTbl> candidates = getAllCandidates();
+            ArrayList candidatesAL = new ArrayList();
+
+            foreach (var candidate in candidates)
+            {
+                if (candidate.gender.Equals(gender))
+                {
+                    candidatesAL.Add(candidate);
+                }
+            }
+            return candidatesAL;
+        }*/
+
+
+
+        public static ArrayList getAllChosenUsersFromTheSameGender(char gender,ArrayList usersArr)
+        {//get all the chosen users from the same gender 'F' = female or 'M'=male
+            List<userTbl> users = usersArr.Cast<userTbl>().ToList();
+            ArrayList usersAL = new ArrayList();
+
+            foreach (userTbl user in users)
+            {
+                if (user.gender.Equals(gender))
+                {
+                    usersAL.Add(user);
+                }
+            }
+            return usersAL;
         }
-    
+        /*
+        public int getAllUsersFromTheSameGender(char gender)
+        {//get all the users from the same gender 'F' = female or 'M'=male - aware\unaware candidates and all the students
+            return getAllCandidatesFromTheSameGender(gender).Count + getAllStudentsFromTheSameGender(gender).Count;
+        }*/
 
+                            /*Add functions*/
+        public static void addUserToUsers(userTbl user,List<userTbl> users)
+        {
+            using (var db = new HeznekDB())
+            {
+                db.userTbl.Add(user);
+                db.SaveChanges();
+            }      
+        }
+                             /*update functions*/
+        public static void updateUserInList(userTbl updatedUser)
+        {
+            using (var db = new HeznekDB())
+            {           
+                List<userTbl> users = getAllUsers();
 
+                foreach(userTbl user in users)
+                {
+                    if(user.id.Equals(updatedUser.id))
+                    {                 
+                        db.userTbl.Remove(user);
+                        db.userTbl.Add(updatedUser);
+                    }
+                }
+            }           
+        }
+
+                            /*removal functions*/
+
+        public static void removeUserFromList(userTbl userToRemove)
+        {
+            using (var db = new HeznekDB())
+            {
+                List<userTbl> users = getAllUsers();
+
+                foreach (userTbl user in users)
+                {
+                    if (user.id.Equals(userToRemove.id))
+                    {
+                        db.userTbl.Remove(user);
+                    }
+                }
+            }
+        }
+        /*
+        public static void addBankToBanks(string name)
+        {
+            using (var db = new HeznekDB())
+            {
+                db.bank.Add(new bank(name));
+                db.SaveChanges();
+            }
+        }
+        */
     }
 }

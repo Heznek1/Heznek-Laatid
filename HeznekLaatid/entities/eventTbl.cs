@@ -33,4 +33,13 @@ namespace HeznekLaatid.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userTbl> userTbl { get; set; }
     }
+
+    public bool isEqualTo(eventTbl evnt)
+    {
+        //if(evnt.nameEvent.Equals(this.)
+        {
+            return true;
+        }
+        return false;
+    }
 }
