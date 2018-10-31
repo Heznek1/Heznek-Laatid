@@ -28,6 +28,8 @@ namespace HeznekLaatid.model
                 {
                     if (eventIndex.sn == updatedEvent.sn)
                     {
+                        eventIndex.nameEvent = updatedEvent.nameEvent;
+                        eventIndex.subjectEvent = updatedEvent.subjectEvent;
                         db.eventTbl.Remove(eventIndex);
                         db.eventTbl.Add(updatedEvent);
              //NOTE: here the updated event gets a new serial number(KEY)

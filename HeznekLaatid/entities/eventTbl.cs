@@ -34,12 +34,5 @@ namespace HeznekLaatid.entities
         public virtual ICollection<userTbl> userTbl { get; set; }
     }
 
-    public bool isEqualTo(eventTbl evnt)
-    {
-        //if(evnt.nameEvent.Equals(this.)
-        {
-            return true;
-        }
-        return false;
-    }
+
 }
