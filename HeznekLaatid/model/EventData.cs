@@ -9,7 +9,7 @@ namespace HeznekLaatid.model
     public class EventData
     {
         /* gets all the evnts from the list of events*/
-        public static List<eventTbl> getAllEvents()
+    /*    public static List<eventTbl> getAllEvents()
         {
             using (var db = new HeznekDB)
             {
@@ -17,8 +17,9 @@ namespace HeznekLaatid.model
                 return events;
             }
         }
+        
         /*update a specific event in the list of events*/
-        public static void updateEventInList(eventTbl updatedEvent)
+       /* public static void updateEventInList(eventTbl updatedEvent)
         {
             using (var db = new HeznekDB())
             {
@@ -36,13 +37,13 @@ namespace HeznekLaatid.model
                     }
                 }
             }
-        }
+        }*/
         /* add an vent to list of events*/
-        public static void addEvent(eventTbl eventToAdd)
+        public static void AddEvent(@event eventToAdd)
         {
             using (var db = new HeznekDB())
             {
-                db.eventTbl.Add(eventToAdd);
+                db.@event.Add(eventToAdd);
                 db.SaveChanges();
             }
         }

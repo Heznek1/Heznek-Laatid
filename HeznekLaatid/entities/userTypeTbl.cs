@@ -18,6 +18,7 @@ namespace HeznekLaatid.entities
         public userTypeTbl()
         {
             this.loginAndPermissions = new HashSet<loginAndPermissions>();
+            this.message = new HashSet<message>();
         }
     
         public int numOfType { get; set; }
@@ -25,5 +26,7 @@ namespace HeznekLaatid.entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<loginAndPermissions> loginAndPermissions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<message> message { get; set; }
     }
 }

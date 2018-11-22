@@ -12,22 +12,18 @@ namespace HeznekLaatid.entities
     using System;
     using System.Collections.Generic;
     
-    public partial class statusTbl
+    public partial class organization_frames_highSchool
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public statusTbl()
+        public organization_frames_highSchool()
         {
-            this.@event = new HashSet<@event>();
-            this.userTbl = new HashSet<userTbl>();
+            this.generalDetailsActiveCandidate = new HashSet<generalDetailsActiveCandidate>();
         }
     
-        public int numOfStatus { get; set; }
-        public string primaryStatusName { get; set; }
-        public string secondaryStatusName { get; set; }
+        public int sn { get; set; }
+        public string name_of_frame { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<@event> @event { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userTbl> userTbl { get; set; }
+        public virtual ICollection<generalDetailsActiveCandidate> generalDetailsActiveCandidate { get; set; }
     }
 }

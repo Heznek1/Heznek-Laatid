@@ -12,16 +12,15 @@ namespace HeznekLaatid.entities
     using System;
     using System.Collections.Generic;
     
-    public partial class studentScholarship
+    public partial class message
     {
-        public string id { get; set; }
-        public int sn { get; set; }
-        public Nullable<int> amountOfGivanScholarship { get; set; }
-        public Nullable<int> numOfDeposits { get; set; }
-        public Nullable<int> currentYear { get; set; }
-        public string wasGivenInPast { get; set; }
+        public int idMessage { get; set; }
+        public string idSender { get; set; }
+        public string message_subject { get; set; }
+        public string message_content { get; set; }
+        public int send_to_group { get; set; }
     
-        public virtual scholarship scholarship { get; set; }
         public virtual userTbl userTbl { get; set; }
+        public virtual userTypeTbl userTypeTbl { get; set; }
     }
 }

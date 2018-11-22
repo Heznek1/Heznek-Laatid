@@ -12,18 +12,12 @@ namespace HeznekLaatid.entities
     using System;
     using System.Collections.Generic;
     
-    public partial class bank
+    public partial class sysdiagrams
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public bank()
-        {
-            this.scholar_bank_details = new HashSet<scholar_bank_details>();
-        }
-    
-        public int sn { get; set; }
         public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<scholar_bank_details> scholar_bank_details { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -79,15 +79,15 @@
     <Content Include="App_Data\HeznekDB_log.ldf">
       <DependentUpon>HeznekDB.mdf</DependentUpon>
     </Content>
-    <Content Include="entities\entities.Context.tt">
+    <Content Include="entities\HeznekDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>entities.edmx</DependentUpon>
-      <LastGenOutput>entities.Context.cs</LastGenOutput>
+      <DependentUpon>HeznekDB.edmx</DependentUpon>
+      <LastGenOutput>HeznekDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="entities\entities.tt">
+    <Content Include="entities\HeznekDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>entities.edmx</DependentUpon>
-      <LastGenOutput>entities.cs</LastGenOutput>
+      <DependentUpon>HeznekDB.edmx</DependentUpon>
+      <LastGenOutput>HeznekDB.cs</LastGenOutput>
     </Content>
     <Content Include="img\mob5tertv-profile_image-695ed5e0a42064bb-300x300.png" />
     <Content Include="view\StudentsUsers.aspx" />
@@ -100,64 +100,85 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ConnectionToDB.cs" />
     <Compile Include="entities\academicInstitutTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\bank.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\cityTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="entities\contactStudentCandidate.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+    <Compile Include="entities\contactScholarAndCandidate.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="entities\entities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>entities.Context.tt</DependentUpon>
+    <Compile Include="entities\deposits_scholarship.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="entities\entities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="entities\entities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>entities.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="entities\eventTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+    <Compile Include="entities\event.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\files.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\generalDetailsActiveCandidate.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\HeznekDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeznekDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\HeznekDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\HeznekDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HeznekDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="entities\loginAndPermissions.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="entities\messages.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+    <Compile Include="entities\message.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\organization_frames_highSchool.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\participantInEvent.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\scholarship.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\scholar_bank_details.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\serviceTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\statusTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\studentScholarship.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\studentVolunteer.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\studyFieldTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entities\sysdiagrams.cs">
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\userTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="entities\userTypeTbl.cs">
-      <DependentUpon>entities.tt</DependentUpon>
+      <DependentUpon>HeznekDB.tt</DependentUpon>
     </Compile>
     <Compile Include="model\BankData.cs" />
     <Compile Include="model\EventData.cs" />
@@ -202,12 +223,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="entities\entities.edmx">
+    <EntityDeploy Include="entities\HeznekDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>entities.Designer.cs</LastGenOutput>
+      <LastGenOutput>HeznekDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="entities\entities.edmx.diagram">
-      <DependentUpon>entities.edmx</DependentUpon>
+    <Content Include="entities\HeznekDB.edmx.diagram">
+      <DependentUpon>HeznekDB.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="view\MasterPage.Master" />

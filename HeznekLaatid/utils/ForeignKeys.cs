@@ -4,16 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using HeznekLaatid.entities;
-
+using System.Collections;
 
 namespace HeznekLaatid
 {
     class ForeignKeys
     {
-
         public static int getCityNumberByName(String city)
         {
-          
+
             using (var db = new HeznekDB())
             {
                 int cityNum = 0;
@@ -23,14 +22,14 @@ namespace HeznekLaatid
                 try
                 {
                     cityNum = query.ToArray().Last();
-                  
+
                 }
                 catch
                 {
                     return 0;
                 }
                 return cityNum;
-              
+
             }
         }
 
@@ -77,13 +76,12 @@ namespace HeznekLaatid
                 return fieldNum;
 
             }
-
         }
 
         public static userTbl getUserConnectedByID(string id)
         {
             List<userTbl> users = UserData.getAllUsers();
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 if (user.id.Equals(id))
                 {
@@ -91,6 +89,28 @@ namespace HeznekLaatid
                 }
             }
             return null;
+        }
+
+
+        /// <Summary>
+        /// Cross tables - get all the candidates and search them by id(foreign key) in all
+        /// users table(id primary key there)
+        /// </Summary>
+        public static List<userTbl> getAllCandidatesDetails()
+        {
+            List<generalDetailsActiveCandidate> candidates = UserData.getCandidatesGenralDetails();
+            List<userTbl> allUsers = UserData.getAllUsers();
+            List<userTbl> candidateUsers = new List<userTbl>();
+
+            foreach (var candidate in candidates)
+            {
+                foreach (var user in allUsers)
+                {
+                    if (candidate.idCandidate.Equals(user))
+                         candidateUsers.Add(user);        
+                }
+            }
+            return candidateUsers;//return a list of the full details of the candidates
         }
     }
 }

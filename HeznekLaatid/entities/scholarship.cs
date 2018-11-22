@@ -17,7 +17,9 @@ namespace HeznekLaatid.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public scholarship()
         {
+            this.deposits_scholarship = new HashSet<deposits_scholarship>();
             this.studentScholarship = new HashSet<studentScholarship>();
+            this.studentVolunteer = new HashSet<studentVolunteer>();
         }
     
         public int sn { get; set; }
@@ -27,6 +29,10 @@ namespace HeznekLaatid.entities
         public string status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<deposits_scholarship> deposits_scholarship { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<studentScholarship> studentScholarship { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<studentVolunteer> studentVolunteer { get; set; }
     }
 }

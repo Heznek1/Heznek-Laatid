@@ -12,12 +12,14 @@ namespace HeznekLaatid.entities
     using System;
     using System.Collections.Generic;
     
-    public partial class contactStudentCandidate
+    public partial class contactScholarAndCandidate
     {
-        public string idStudent { get; set; }
+        public string idScholar { get; set; }
         public string idCandidate { get; set; }
-        public Nullable<System.DateTime> dateOfCall { get; set; }
-        public string updating { get; set; }
+        public System.DateTime dateOfCall { get; set; }
+        public string study_funding { get; set; }
+        public string comments { get; set; }
+        public Nullable<System.DateTime> return_date { get; set; }
     
         public virtual userTbl userTbl { get; set; }
         public virtual userTbl userTbl1 { get; set; }

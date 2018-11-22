@@ -28,17 +28,24 @@ namespace HeznekLaatid.entities
         public virtual DbSet<academicInstitutTbl> academicInstitutTbl { get; set; }
         public virtual DbSet<bank> bank { get; set; }
         public virtual DbSet<cityTbl> cityTbl { get; set; }
-        public virtual DbSet<contactStudentCandidate> contactStudentCandidate { get; set; }
-        public virtual DbSet<eventTbl> eventTbl { get; set; }
+        public virtual DbSet<contactScholarAndCandidate> contactScholarAndCandidate { get; set; }
+        public virtual DbSet<deposits_scholarship> deposits_scholarship { get; set; }
+        public virtual DbSet<@event> @event { get; set; }
         public virtual DbSet<files> files { get; set; }
         public virtual DbSet<loginAndPermissions> loginAndPermissions { get; set; }
-        public virtual DbSet<messages> messages { get; set; }
+        public virtual DbSet<message> message { get; set; }
+        public virtual DbSet<organization_frames_highSchool> organization_frames_highSchool { get; set; }
+        public virtual DbSet<participantInEvent> participantInEvent { get; set; }
+        public virtual DbSet<scholar_bank_details> scholar_bank_details { get; set; }
         public virtual DbSet<scholarship> scholarship { get; set; }
         public virtual DbSet<serviceTbl> serviceTbl { get; set; }
         public virtual DbSet<statusTbl> statusTbl { get; set; }
         public virtual DbSet<studentScholarship> studentScholarship { get; set; }
+        public virtual DbSet<studentVolunteer> studentVolunteer { get; set; }
         public virtual DbSet<studyFieldTbl> studyFieldTbl { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<userTbl> userTbl { get; set; }
         public virtual DbSet<userTypeTbl> userTypeTbl { get; set; }
+        public virtual DbSet<generalDetailsActiveCandidate> generalDetailsActiveCandidate { get; set; }
     }
 }
